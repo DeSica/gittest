@@ -15,3 +15,6 @@ git commit -m ""	提交记录
 git add	添加到暂缓区
 
 git diff a -- b	比对
+
+git checkout -- file	工作区/暂缓区 撤销修改
+
