@@ -32,3 +32,4 @@ git push -u origin master	将本地仓库推送到远程
 
 git clone (ssh地址)	克隆远程库
 
+git checkout -b dev   checkout命令加上-b参数表示创建并切换 相当于git branch dev + git checkout dev
