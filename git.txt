@@ -1,4 +1,4 @@
-﻿git config --global 设置全局变量 user.name user.email
+git config --global 设置全局变量 user.name user.email
 
 git status	查看状态
 
@@ -34,27 +34,15 @@ git clone (ssh地址)	克隆远程库
 
 git branch	查看分支
 
-<<<<<<< HEAD
 git branch <BranchName>	创建分支
 
 git checkout <BranchName>	切换分支
 
 git checkout -b <BranchName> 创建并切换分支
-=======
-git branch <BranchName>	创建分支
-
-git checkout <BranchName>	切换分支
-
-git checkout -b <BranchName> 创建并切换分支
->>>>>>> 6e630fa16853003895ff023735f9d3c4ff3ab02c
 
 git merge	合并分支到当前分支
 
-<<<<<<< HEAD
 git branch -d/-D <BranchName>	删除/强行删除 分支
-=======
-git branch -d/-D <BranchName>	删除/强行删除 分支
->>>>>>> 6e630fa16853003895ff023735f9d3c4ff3ab02c
 
 git merge --no-ff -m "" <分支名> 取消fast-forward 以免丢失分支信息
 
@@ -68,7 +56,6 @@ git stash drop	删除现场
 
 git stash pop	恢复并删除现场
 
-<<<<<<< HEAD
 git pull	-拉取远程
 
 git branch --set-upstream <BranchName> <DepotName>/<BranchName>
@@ -76,12 +63,3 @@ git branch --set-upstream <BranchName> <DepotName>/<BranchName>
 git remote 查看远程库
 
 git remote -v 查看远程库详细信息
-=======
-git pull	-拉取远程
-
-git branch --set-upstream <BranchName> <DepotName>/<BranchName>
-
-git remote 查看远程库
-
-git remote -v 查看远程库详细信息
->>>>>>> 6e630fa16853003895ff023735f9d3c4ff3ab02c
