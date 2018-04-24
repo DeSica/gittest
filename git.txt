@@ -11,3 +11,7 @@ HEAD^ HEAD~100	指向版本库的指针
 git reset --hard	回到某个版本
 
 git commit -m ""	提交记录
+
+git add	添加到暂缓区
+
+git diff a -- b	比对
