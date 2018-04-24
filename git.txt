@@ -46,3 +46,13 @@ git branch -d <name>	删除分支
 
 git merge --no-ff -m "" <分支名> 取消fast-forward 以免丢失分支信息
 
+git stash	储存工作现场
+
+git stash list 查看工作现场
+
+git stash apply	stash@{<序号>}	恢复现场但不删除
+
+git stash drop	删除现场
+
+git stash pop	恢复并删除现场
+
