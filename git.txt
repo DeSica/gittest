@@ -16,5 +16,6 @@ git add	添加到暂缓区
 
 git diff a -- b	比对
 
-git checkout -- file	工作区/暂缓区 撤销修改
+git checkout -- file	工作区/暂缓区 状态复原
 
+git reset HEAD file		暂缓区修改撤销
