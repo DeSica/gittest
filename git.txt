@@ -24,8 +24,11 @@ git rm	删除文件   也是修改也需要commit
 
 ssh-keygen -t rsa -C "youremail@example.com"	创建SHH Key 后在github上添加ssh key
 
-git remote add origin git@github.com:michaelliao/learngit.git 关联远程仓库
+git remote add origin (ssh地址) 关联远程仓库
 
 git push -u origin master	将本地仓库推送到远程
 由于远程库是空的，第一次推送master分支时，加上了-u参数，Git不但会把本地的master分支内容推送的远程新的master分支，
 还会把本地的master分支和远程的master分支关联起来，在以后的推送或者拉取时就可以简化命令为git push origin master
+
+git clone (ssh地址)	克隆远程库
+
