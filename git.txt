@@ -1,12 +1,13 @@
 git config --global 设置全局变量 user.name user.email
 
-git status 	查看状态
+git status	查看状态
 
-git log		显示提交记录
+git log	显示提交记录
 
 git reflog	显示所有记录
 
-HEAD^ HEAD~100 指向版本库的指针
+HEAD^ HEAD~100	指向版本库的指针
 
-git reset	回到某个版本
+git reset --hard	回到某个版本
 
+git commit -m ""	提交记录
