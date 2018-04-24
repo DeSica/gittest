@@ -1,58 +1,61 @@
-git config --global ÉèÖÃÈ«¾Ö±äÁ¿ user.name user.email
+git config --global è®¾ç½®å…¨å±€å˜é‡ user.name user.email
 
-git status	²é¿´×´Ì¬
+git status	æŸ¥çœ‹çŠ¶æ€
 
-git log	ÏÔÊ¾Ìá½»¼ÇÂ¼
+git log	æ˜¾ç¤ºæäº¤è®°å½•
 
-git reflog	ÏÔÊ¾ËùÓĞ¼ÇÂ¼
+git reflog	æ˜¾ç¤ºæ‰€æœ‰è®°å½•
 
-HEAD^ HEAD~100	Ö¸Ïò°æ±¾¿âµÄÖ¸Õë
+HEAD^ HEAD~100	æŒ‡å‘ç‰ˆæœ¬åº“çš„æŒ‡é’ˆ
 
-git reset --hard	»Øµ½Ä³¸ö°æ±¾
+git reset --hard	å›åˆ°æŸä¸ªç‰ˆæœ¬
 
-git commit -m ""	Ìá½»¼ÇÂ¼
+git commit -m ""	æäº¤è®°å½•
 
-git add	Ìí¼Óµ½Ôİ»ºÇø
+git add	æ·»åŠ åˆ°æš‚ç¼“åŒº
 
-git diff a -- b	±È¶Ô
+git diff a -- b	æ¯”å¯¹
 
-git checkout -- file	¹¤×÷Çø/Ôİ´æÇø ×´Ì¬¸´Ô­
+git checkout -- file	å·¥ä½œåŒº/æš‚å­˜åŒº çŠ¶æ€å¤åŸ
 
-git reset HEAD file		Ôİ´æÇøADD³·Ïú
+git reset HEAD file		æš‚å­˜åŒºADDæ’¤é”€
 
-git rm	É¾³ıÎÄ¼ş   Ò²ÊÇĞŞ¸ÄÒ²ĞèÒªcommit
+git rm	åˆ é™¤æ–‡ä»¶   ä¹Ÿæ˜¯ä¿®æ”¹ä¹Ÿéœ€è¦commit
 
-ssh-keygen -t rsa -C <ÓÊÏä×Ö·û´®>	´´½¨SHH Key ºóÔÚgithubÉÏÌí¼Óssh key
+ssh-keygen -t rsa -C <é‚®ç®±å­—ç¬¦ä¸²>	åˆ›å»ºSHH Key ååœ¨githubä¸Šæ·»åŠ ssh key
 
-git remote add <Ô¶³Ì¿âÃû> <sshµØÖ·> ¹ØÁªÔ¶³Ì²Ö¿â
+git remote add <è¿œç¨‹åº“å> <sshåœ°å€> å…³è”è¿œç¨‹ä»“åº“
 
-git push -u <Ô¶³Ì¿âÃû> <·ÖÖ§Ãû>	½«±¾µØ²Ö¿âÍÆËÍµ½Ô¶³Ì
-ÓÉÓÚÔ¶³Ì¿âÊÇ¿ÕµÄ£¬µÚÒ»´ÎÍÆËÍ·ÖÖ§Ê±£¬¼ÓÉÏÁË-u²ÎÊı£¬Git²»µ«»á°Ñ±¾µØµÄ·ÖÖ§ÄÚÈİÍÆËÍµÄÔ¶³ÌĞÂµÄ·ÖÖ§£¬
-»¹»á°Ñ±¾µØµÄ·ÖÖ§ºÍÔ¶³ÌµÄ·ÖÖ§¹ØÁªÆğÀ´£¬ÔÚÒÔºóµÄÍÆËÍ»òÕßÀ­È¡Ê±¾Í¿ÉÒÔ¼ò»¯ÃüÁîÎªgit push <Ô¶³Ì¿âÃû> <·ÖÖ§Ãû>
+git push -u <è¿œç¨‹åº“å> <åˆ†æ”¯å>	å°†æœ¬åœ°ä»“åº“æ¨é€åˆ°è¿œç¨‹
+ç”±äºè¿œç¨‹åº“æ˜¯ç©ºçš„ï¼Œç¬¬ä¸€æ¬¡æ¨é€åˆ†æ”¯æ—¶ï¼ŒåŠ ä¸Šäº†-uå‚æ•°ï¼ŒGitä¸ä½†ä¼šæŠŠæœ¬åœ°çš„åˆ†æ”¯å†…å®¹æ¨é€çš„è¿œç¨‹æ–°çš„åˆ†æ”¯ï¼Œ
+è¿˜ä¼šæŠŠæœ¬åœ°çš„åˆ†æ”¯å’Œè¿œç¨‹çš„åˆ†æ”¯å…³è”èµ·æ¥ï¼Œåœ¨ä»¥åçš„æ¨é€æˆ–è€…æ‹‰å–æ—¶å°±å¯ä»¥ç®€åŒ–å‘½ä»¤ä¸ºgit push <è¿œç¨‹åº“å> <åˆ†æ”¯å>
 
-git clone (sshµØÖ·)	¿ËÂ¡Ô¶³Ì¿â
+git clone (sshåœ°å€)	å…‹éš†è¿œç¨‹åº“
 
-git branch	²é¿´·ÖÖ§
+git branch	æŸ¥çœ‹åˆ†æ”¯
 
-git branch <name>	´´½¨·ÖÖ§
+git branch <name>	åˆ›å»ºåˆ†æ”¯
 
-git checkout <name>	ÇĞ»»·ÖÖ§
+git checkout <name>	åˆ‡æ¢åˆ†æ”¯
 
-git checkout -b <name> ´´½¨²¢ÇĞ»»·ÖÖ§
+git checkout -b <name> åˆ›å»ºå¹¶åˆ‡æ¢åˆ†æ”¯
 
-git merge	ºÏ²¢·ÖÖ§µ½µ±Ç°·ÖÖ§
+git merge	åˆå¹¶åˆ†æ”¯åˆ°å½“å‰åˆ†æ”¯
 
-git branch -d/-D <name>	É¾³ı/Ç¿ĞĞÉ¾³ı ·ÖÖ§
+git branch -d/-D <name>	åˆ é™¤/å¼ºè¡Œåˆ é™¤ åˆ†æ”¯
 
-git merge --no-ff -m "" <·ÖÖ§Ãû> È¡Ïûfast-forward ÒÔÃâ¶ªÊ§·ÖÖ§ĞÅÏ¢
+git merge --no-ff -m "" <åˆ†æ”¯å> å–æ¶ˆfast-forward ä»¥å…ä¸¢å¤±åˆ†æ”¯ä¿¡æ¯
 
-git stash	´¢´æ¹¤×÷ÏÖ³¡
+git stash	å‚¨å­˜å·¥ä½œç°åœº
 
-git stash list ²é¿´¹¤×÷ÏÖ³¡
+git stash list æŸ¥çœ‹å·¥ä½œç°åœº
 
-git stash apply	stash@{<ĞòºÅ>}	»Ö¸´ÏÖ³¡µ«²»É¾³ı
+git stash apply	stash@{<åºå·>}	æ¢å¤ç°åœºä½†ä¸åˆ é™¤
 
-git stash drop	É¾³ıÏÖ³¡
+git stash drop	åˆ é™¤ç°åœº
 
-git stash pop	»Ö¸´²¢É¾³ıÏÖ³¡
+git stash pop	æ¢å¤å¹¶åˆ é™¤ç°åœº
 
+git remote Â æŸ¥çœ‹è¿œç¨‹åº“
+
+git remote -v æŸ¥çœ‹è¿œç¨‹åº“è¯¦ç»†ä¿¡æ¯
