@@ -22,14 +22,25 @@ git reset HEAD file		暂存区ADD撤销
 
 git rm	删除文件   也是修改也需要commit
 
-ssh-keygen -t rsa -C "youremail@example.com"	创建SHH Key 后在github上添加ssh key
+ssh-keygen -t rsa -C <邮箱字符串>	创建SHH Key 后在github上添加ssh key
 
-git remote add origin (ssh地址) 关联远程仓库
+git remote add <远程库名> <ssh地址> 关联远程仓库
 
-git push -u origin master	将本地仓库推送到远程
-由于远程库是空的，第一次推送master分支时，加上了-u参数，Git不但会把本地的master分支内容推送的远程新的master分支，
-还会把本地的master分支和远程的master分支关联起来，在以后的推送或者拉取时就可以简化命令为git push origin master
+git push -u <远程库名> <分支名>	将本地仓库推送到远程
+由于远程库是空的，第一次推送分支时，加上了-u参数，Git不但会把本地的分支内容推送的远程新的分支，
+还会把本地的分支和远程的分支关联起来，在以后的推送或者拉取时就可以简化命令为git push <远程库名> <分支名>
 
 git clone (ssh地址)	克隆远程库
 
-git checkout -b dev   checkout命令加上-b参数表示创建并切换 相当于git branch dev + git checkout dev
+git branch	查看分支
+
+git branch <name>	创建分支
+
+git checkout <name>	切换分支
+
+git checkout -b <name> 创建并切换分支
+
+git merge	合并分支到当前分支
+
+git branch -d <name>	删除分支
+
