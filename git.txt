@@ -21,3 +21,5 @@ git checkout -- file	工作区/暂存区 状态复原
 git reset HEAD file		暂存区ADD撤销
 
 git rm	删除文件   也是修改也需要commit
+
+$ ssh-keygen -t rsa -C "youremail@example.com"	创建SHH Key
