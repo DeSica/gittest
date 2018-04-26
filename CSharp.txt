@@ -1,0 +1,67 @@
+值类型：///
+指针类型：不安全代码
+引用类型：object(对象类型) dynamic(动态类型) string (字符串类型)
+自定义类型：class interface delegate
+Note : 	1.动态类型与对象类型相似，但是对象类型变量的类型检查是在编译时发生的，而动态类型变量的类型检查是在运行时发生的。
+		2.C# string 字符串的前面可以加 @（称作"逐字字符串"）将转义字符（\）当作普通字符对待。@ 字符串中可以任意换行，换行符及缩进空格都计算在字符串长度之内
+		
+类型转换：ToDateTime
+
+Internal访问说明符允许一个类将其成员变量和成员函数暴露给当前程序中的其他函数和对象
+
+Protected Internal 访问修饰符允许一个类将其成员变量和成员函数对同一应用程序内的子类以外的其他的类对象和函数进行隐藏。这也被用于实现继承。
+
+int? num = int?() / 20	?代表可空类型可以赋空值
+
+int num = null ?? 10 Null合并运算符(??)如果第一个操作数的值为 null，则运算符返回第二个操作数的值，否则返回第一个操作数的值。
+
+int[,] arr = new int[2,2] 多维数组	矩阵
+
+int[][] arr 交错数组	可变
+
+funcName(params int[] arr) funcName(1,2,3,4,5)	参数数组
+
+类的默认访问标识符是 internal，成员的默认访问标识符是 private。
+
+通过在类定义前面放置关键字 sealed，可以将类声明为密封类。当一个类被声明为 sealed 时，它不能被继承。抽象类不能被声明为 sealed。
+
+静态多态 编译时 函数重载 运算符重载 
+
+动态多态 运行时 抽象方法 虚方法
+
+特性(Attribute)是用于在运行时传递程序中各种元素（比如类、方法、结构、枚举、组件等）的行为信息的声明性标签。您可以通过使用特性向程序添加声明性信息。一个声明性标签是通过放置在它所应用的元素前面的方括号（[ ]）来描述的。
+特性(Attribute)用于添加元数据，如编译器指令和注释、描述、方法、类等其他信息。.Net 框架提供了两种类型的特性：预定义特性和自定义特性。
+
+规定特性
+
+预定义特性 
+-AttributeUsage 预定义特性 AttributeUsage 描述了如何使用一个自定义特性类。它规定了特性可应用到的项目的类型。
+-Conditional	相当于if define
+-Obsolete		标记过时的方法
+
+反射	memberinfo methodinfo using System.Reflection;
+
+属性	很开心
+
+索引器	element-type thisp[int index]{get{}set{}}允许一个对象可以像数组一样被索引	索引器可以重载
+
+委托(delegate) 委托的多播 用+号把相同类型的委托合并
+
+事件	基本上说是一个用户操作，如按键、点击、鼠标移动等等，或者是一些出现，如系统生成的通知。应用程序需要在事件发生时响应事件。例如，中断。事件是用于进程间通信。
+通过事件使用委托public delegate void <delegateName>(<args>)绑定方法; public event <delegateName> <EventName>添加事件队列;
+
+集合(Collection)	
+动态数组(ArrayList)		它代表了可被单独索引的对象的有序集合。
+哈希表(HashTable)		它使用键来访问集合中的元素。
+排序列表(SortedList)	它可以使用键和索引来访问列表中的项。对键排序	
+堆栈(Stack)				它代表了一个后进先出的对象集合。
+队列(Queue)				它代表了一个先进先出的对象集合。
+点阵列(BitArray)		它代表了一个使用值 1 和 0 来表示的二进制数组。
+
+泛型(Generic)	<GenericTypeName>
+
+匿名方法	声明委托 <delegateName> <variableName> = delegate(<args>){<funcBody>}
+
+不安全代码	unsafe 使用指针 fixed(<type> <pointer> = <array>)固定指针，访问数组元素 命令行编译时需要/unsafe
+
+多线程
