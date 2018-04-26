@@ -1,0 +1,30 @@
+注意
+#define GLUT_DISABLE_ATEXIT_HACK 	win32下在调用gl库前定义，可解决atexit的报错
+
+创建窗口
+glutInit(int*, char**)					#最简单的opengl窗口，但是会一闪而退
+glutInitDisplayMode(mode)				#显示模式	GLUT_SINGLE->单缓冲 GLUT_RGB->RGB
+glutInitWindowPosition(x,y)				#设置窗口位置
+glutInitWindowSize(width,height)		#设置窗口大小
+glutCreateWindow(char* TileName)		#创建窗口
+glutDisplayFunc(void(_cdecl *func)())	#参数为带有绘制函数的函数指针，在主循环前实现不会闪退。大概没东西显示就自己结束循环了？
+glutMainLoop()							#主循环
+
+
+
+参数设定
+glClearColor(r,g,b,a)				#背景颜色
+glMatrixMode(GLenum mode)			#设置投影模式	GL_PROJECTION->投影
+gluOrtho2D(left,right,bottom,top)	#设置2D的逻辑显示区域
+
+
+绘制函数
+glClear(GLbitfield mask)			#GL_COLOR_BUFFER_BIT->OpenGL符号常量 颜色缓存，该缓存用glClearColor的值设定
+glColor4f(r,g,b,a)					#绘制颜色
+glRectf(x1,y1,x2,y2)				#中心点为(0,0)。以(0,1)对比屏幕比例为参数坐标绘制区域？
+glBegin(GLenum mode)				#点开始？
+glEnd()								#结束？
+glVertex2?(x,y)						#二维顶点
+glFlush()							#强制清空所有缓存来处理OpenGL
+
+
