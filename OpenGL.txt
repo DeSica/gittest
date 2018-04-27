@@ -15,16 +15,19 @@ glutMainLoop()							#主循环
 参数设定
 glClearColor(r,g,b,a)				#背景颜色
 glMatrixMode(GLenum mode)			#设置投影模式	GL_PROJECTION->投影
-gluOrtho2D(left,right,bottom,top)	#设置2D的逻辑显示区域
+glEnableClientState(GL_VERTEX_ARRAY)#激活OpenGL 的顶点数组特性
+glVertexPointer()					#指定顶点的位置和数据格式
+glDrawElements()					#显示场景，该子程序可处理多个图元而仅需少量的函数调用
+gluOrtho2D(left,right,bottom,top)	#设定一个二维笛卡尔坐标系
 
 
 绘制函数
 glClear(GLbitfield mask)			#GL_COLOR_BUFFER_BIT->OpenGL符号常量 颜色缓存，该缓存用glClearColor的值设定
-glColor4f(r,g,b,a)					#绘制颜色
-glRectf(x1,y1,x2,y2)				#中心点为(0,0)。以(0,1)对比屏幕比例为参数坐标绘制区域？
-glBegin(GLenum mode)				#点开始？
-glEnd()								#结束？
-glVertex2?(x,y)						#二维顶点
+glColor4*(r,g,b,a)					#绘制颜色
+glRect*(x1,y1,x2,y2)				#中心点为(0,0)。以(0,1)对比屏幕比例为参数坐标绘制区域？
+glBegin(GLenum mode)				#开始	GL_LINES GL_POINTS GL_LINE_STRIP(折线) GL_LINE_LOOP(封闭曲线) GL_POLYGON(多边形) GL_TRIANGLES(三角形)
+glEnd()								#结束
+glVertex2*(x,y)						#二维顶点
 glFlush()							#强制清空所有缓存来处理OpenGL
 
 
