@@ -2,14 +2,19 @@
 #define GLUT_DISABLE_ATEXIT_HACK 	win32下在调用gl库前定义，可解决atexit的报错
 
 创建窗口
-glutInit(int*, char**)					#最简单的opengl窗口，但是会一闪而退
-glutInitDisplayMode(mode)				#显示模式	GLUT_SINGLE->单缓冲 GLUT_RGB->RGB
-glutInitWindowPosition(x,y)				#设置窗口位置
-glutInitWindowSize(width,height)		#设置窗口大小
-glutCreateWindow(char* TileName)		#创建窗口
-glutDisplayFunc(void(_cdecl *func)())	#参数为带有绘制函数的函数指针，在主循环前实现不会闪退。大概没东西显示就自己结束循环了？
-glutMainLoop()							#主循环
-
+glfwInit()												#最简单的opengl窗口，但是会一闪而退
+glfwSetWindowPos(window,x,y)							#设置窗口位置
+glfwSetWindowSize(window,width,height)					#设置窗口大小
+glfwCreateWindow(width,height,title,monitor,share)		#创建窗口
+glfwMakeContextCurrent(window)							
+while (!glfwWindowShouldClose(window))
+{
+	display();
+	glfwSwapBuffers(window);
+	glfwPollEvents();
+}
+glfwDestroyWindow(window);
+glfwTerminate();
 
 
 参数设定
