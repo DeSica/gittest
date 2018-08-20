@@ -1,0 +1,12 @@
+list<Button>  m_ButtonList;     //用于控制按钮的动画
+
+void OnClicked_QuitGame() 
+{
+    Application.Quit();
+}
+
+void OnClicked_StartGame() 
+{
+    LoadScene("PreGame");
+}
+

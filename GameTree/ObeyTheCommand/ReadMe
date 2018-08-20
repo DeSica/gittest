@@ -1,0 +1,2 @@
+1.使用DoTween作为主要动画插件
+2.GameManager,DataManager,ResManager 全局唯一加载场景时不销毁
