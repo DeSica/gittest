@@ -31,6 +31,7 @@ public class CardManager : MonoBehaviour {
 				tempObj.transform.localPosition = new Vector3(
 					col * (m_CardSize.x + m_CardInterval.x) + m_CardOffset.x, 
 					row * (m_CardSize.y + m_CardInterval.y) + m_CardOffset.y, 0);
+				tempObj.GetComponent<Card>().GridPos = new Vector2Int(col, row);
 				m_CardList.Add(tempObj);
 			}
 		}
