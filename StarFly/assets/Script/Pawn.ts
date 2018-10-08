@@ -25,21 +25,24 @@ export default class Pawn extends cc.Component {
     // LIFE-CYCLE CALLBACKS:
     @property({type:cc.Enum(PawnType)})
     type = 0;
-
     sprite: cc.Sprite = null;
+    moveY = 0;
+    moveSpeed = 500;
+    moveAction: cc.Action = null; 
     // onLoad () {}
 
     start () {
     }
 
-    init(type: number, x: number) {
+    init(type: number, x: number, y: number) {
+        this.moveY = -GameManager.instance.screenSize.height;
         this.sprite = this.getComponent(cc.Sprite);
         this.sprite.spriteFrame = MapController.instance.spriteArr[type];
         this.type = type;
-        this.node.runAction(
+        this.moveAction = this.node.runAction(
             cc.sequence(
                 cc.moveTo(
-                    5, new cc.Vec2(x, -GameManager.instance.screenSize.height)
+                    Math.abs((this.moveY - y) / this.moveSpeed), new cc.Vec2(x, this.moveY)
                 ),
                 cc.callFunc(this.moveEndCall, this)
             )
@@ -54,6 +57,7 @@ export default class Pawn extends cc.Component {
                 GameManager.instance.gameover();
                 break;
                 case PawnType.PawnType_Score:
+                GameManager.instance.addScore(100);
                 this.moveEndCall();
                 break;
             }
@@ -62,6 +66,7 @@ export default class Pawn extends cc.Component {
 
     moveEndCall() {
         this.node.active = false;
+        this.node.stopAction(this.moveAction);
         MapController.instance.pawnPool.put(this.node);
     }
     // update (dt) {}

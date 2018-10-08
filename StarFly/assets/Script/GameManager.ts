@@ -17,7 +17,10 @@ const {ccclass, property} = cc._decorator;
 export default class GameManager extends cc.Component {
 
     // LIFE-CYCLE CALLBACKS:
+    @property(cc.Label)
+    playerScoreLabel: cc.Label = null;
 
+    playerScore = 0;
     screenSize: cc.Size = null;
     static instance: GameManager = null;
     onLoad () {
@@ -38,5 +41,9 @@ export default class GameManager extends cc.Component {
     }
     gameover() {
         cc.director.loadScene('Game');
+    }
+    addScore(add: number) {
+        this.playerScore += add;
+        this.playerScoreLabel.string = String(this.playerScore);
     }
 }

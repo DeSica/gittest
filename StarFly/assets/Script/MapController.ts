@@ -32,6 +32,11 @@ export default class MapController extends cc.Component {
     pawnPoolInitNum = 10;
 
     rateArr = [0.01, 0.02, 0.03];
+    prefabPawnArrData = [
+        [{type: 0, x: 40, y: 0},{type: 0, x: 130, y: 0},{type: 0, x: 220, y: 0}],
+        [{type: 1, x: 40, y: 40},{type: 1, x: 130, y: 130},{type: 1, x: 220, y: 220}],
+        [{type: 2, x: 300, y: 40},{type: 2, x: 300, y: 130},{type: 2, x: 300, y: 220}],
+    ]
     pawnPool: cc.NodePool = null;
     static instance: MapController = null;
     onLoad () {
@@ -48,6 +53,7 @@ export default class MapController extends cc.Component {
     }
 
     run() {
+        GameManager.instance.addScore(1);
         this.updateMap();
         this.updatePawn();
     }
@@ -65,13 +71,15 @@ export default class MapController extends cc.Component {
 
     updatePawn() {
         for(let i = 0; i < this.rateArr.length; ++i) {
-            if(this.rateArr[i] > Math.random()) {
-                let pawn = this.createPawn();
-                let randX = Math.random() * GameManager.instance.screenSize.width;
-                pawn.active = true;
-                pawn.setParent(this.spawn);
-                pawn.setPosition(randX, 0);
-                pawn.getComponent(Pawn).init(i, randX);
+            if(this.rateArr[i] > Math.random() * 10) {
+                for(let j = 0; j < this.prefabPawnArrData[i].length; ++j) {
+                    let data = this.prefabPawnArrData[i][j];
+                    let pawn = this.createPawn();
+                    pawn.active = true;
+                    pawn.setParent(this.spawn);
+                    pawn.setPosition(data.x, data.y);
+                    pawn.getComponent(Pawn).init(data.type, data.x, data.y);
+                }
                 break;
             }
         }
