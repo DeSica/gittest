@@ -1,4 +1,5 @@
 import MapController from "./MapController";
+import GameManager from "./GameManager";
 
 // Learn TypeScript:
 //  - [Chinese] http://docs.cocos.com/creator/manual/zh/scripting/typescript.html
@@ -22,23 +23,29 @@ export default class PlayerController extends cc.Component {
     changeRotate = 45;
     @property(cc.Float)
     bLeft: boolean = true;
-    @property(cc.Float)
-    moveSpeedX = 0;
-    // onLoad () {}
+    @property(cc.Vec2)
+    moveSpeed: cc.Vec2 = cc.Vec2.ZERO;
+
+    screenWidth = 0;
+    static instance: PlayerController = null;
+    onLoad () {
+        PlayerController.instance = this;
+    }
 
     start () {
-        this.node.once(cc.Node.EventType.TOUCH_START, () => {
-            this.node.runAction(cc.moveBy(this.moveCenterTime, new cc.Vec2(0, 600)));
-            cc.delayTime(this.moveCenterTime);
-            this.node.on(cc.Node.EventType.TOUCH_START, this.changeForward, this);
-        }, this);
+        this.screenWidth = GameManager.instance.screenSize.width;
     }
 
-    changeForward() {
+    changeDir() {
         this.bLeft = !this.bLeft;
         this.node.rotation = this.bLeft ? -this.changeRotate : this.changeRotate;
-        this.moveSpeedX = MapController.instance.moveSpeed.y / Math.tan(this.changeRotate);
+        this.moveSpeed = new cc.Vec2(-MapController.instance.moveSpeed.y / Math.tan(this.node.rotation), 0); 
     }
-
-    // update (dt) {}
+    run() {
+        this.node.position = this.node.position.add(this.moveSpeed);
+        if(this.node.position.x < -this.screenWidth / 2 && this.bLeft
+        || this.node.position.x > this.screenWidth / 2 && !this.bLeft) {
+            this.changeDir();
+        }
+    }
 }

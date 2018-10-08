@@ -1,4 +1,5 @@
 import MapController from "./MapController";
+import PlayerController from "./PlayerController";
 
 // Learn TypeScript:
 //  - [Chinese] http://docs.cocos.com/creator/manual/zh/scripting/typescript.html
@@ -16,15 +17,26 @@ const {ccclass, property} = cc._decorator;
 export default class GameManager extends cc.Component {
 
     // LIFE-CYCLE CALLBACKS:
-    @property(MapController)
-    mapController: MapController = null;
-    // onLoad () {}
 
-    start () {
-
+    screenSize: cc.Size = null;
+    static instance: GameManager = null;
+    onLoad () {
+        GameManager.instance = this;
+        this.screenSize = cc.winSize;
+        cc.director.getCollisionManager().enabled = true;
     }
 
+    start () {
+        this.node.on(cc.Node.EventType.TOUCH_END, this.clickCanvas, this);
+    }
+    clickCanvas() {
+        PlayerController.instance.changeDir();
+    }
     update (dt) {
-        this.mapController.runMap();
+        MapController.instance.run();
+        PlayerController.instance.run();
+    }
+    gameover() {
+        cc.director.loadScene('Game');
     }
 }

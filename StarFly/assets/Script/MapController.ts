@@ -1,3 +1,6 @@
+import GameManager from "./GameManager";
+import Pawn from "./Pawn";
+
 // Learn TypeScript:
 //  - [Chinese] http://docs.cocos.com/creator/manual/zh/scripting/typescript.html
 //  - [English] http://www.cocos2d-x.org/docs/creator/manual/en/scripting/typescript.html
@@ -13,30 +16,43 @@ const {ccclass, property} = cc._decorator;
 @ccclass
 export default class MapController extends cc.Component {
 
-    // @property(cc.Label)
-    // label: cc.Label = null;
-
-    // @property
-    // text: string = 'hello';
-
-    // LIFE-CYCLE CALLBACKS:
-
     @property(cc.Node)
     bg1: cc.Node = null;
     @property(cc.Node)
     bg2: cc.Node = null;
+    @property(cc.Node)
+    spawn: cc.Node = null;
+    @property(cc.Prefab)
+    pawnPrefab: cc.Prefab = null;
     @property(cc.Vec2)
-    moveSpeed: cc.Vec2 = null;
+    moveSpeed: cc.Vec2 = cc.Vec2.ZERO;
+    @property([cc.SpriteFrame])
+    spriteArr: cc.SpriteFrame[] = [];
+    @property(cc.Integer)
+    pawnPoolInitNum = 10;
 
+    rateArr = [0.01, 0.02, 0.03];
+    pawnPool: cc.NodePool = null;
     static instance: MapController = null;
     onLoad () {
         MapController.instance = this;
     }
 
     start () {
+        this.pawnPool = new cc.NodePool();
+        for(let i = 0; i < this.pawnPoolInitNum; ++i) {
+            let pawn = cc.instantiate(this.pawnPrefab);
+            pawn.active = false;
+            this.pawnPool.put(pawn);
+        }
     }
 
-    public runMap() {
+    run() {
+        this.updateMap();
+        this.updatePawn();
+    }
+
+    updateMap() {
         this.bg1.position = this.bg1.position.add(this.moveSpeed);
         this.bg2.position = this.bg2.position.add(this.moveSpeed);
         if(this.bg1.y <= -this.bg1.height / 2) {
@@ -45,6 +61,28 @@ export default class MapController extends cc.Component {
         if(this.bg2.y <= -this.bg2.height / 2) {
             this.bg2.y = this.bg2.height * 1.5;
         }
+    }
+
+    updatePawn() {
+        for(let i = 0; i < this.rateArr.length; ++i) {
+            if(this.rateArr[i] > Math.random()) {
+                let pawn = this.createPawn();
+                let randX = Math.random() * GameManager.instance.screenSize.width;
+                pawn.active = true;
+                pawn.setParent(this.spawn);
+                pawn.setPosition(randX, 0);
+                pawn.getComponent(Pawn).init(i, randX);
+                break;
+            }
+        }
+    }
+
+    createPawn() {
+        if(this.pawnPool.size() > 0) {
+            return this.pawnPool.get();
+        } else {
+            return cc.instantiate(this.pawnPrefab);
+        }   
     }
     // update (dt) {}
 }
