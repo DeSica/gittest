@@ -30,7 +30,10 @@ export default class MapController extends cc.Component {
     spriteArr: cc.SpriteFrame[] = [];
     @property(cc.Integer)
     pawnPoolInitNum = 10;
+    @property(cc.Integer)
+    spawnCD = 1;
 
+    spwanLock = false;
     rateArr = [0.01, 0.02, 0.03];
     prefabPawnArrData = [
         [{type: 0, x: 40, y: 0},{type: 0, x: 130, y: 0},{type: 0, x: 220, y: 0}],
@@ -70,8 +73,12 @@ export default class MapController extends cc.Component {
     }
 
     updatePawn() {
+        if(this.spwanLock) {
+            return;
+        }
+        let randomNum = Math.random() * 5;
         for(let i = 0; i < this.rateArr.length; ++i) {
-            if(this.rateArr[i] > Math.random() * 10) {
+            if(this.rateArr[i] > randomNum) {
                 for(let j = 0; j < this.prefabPawnArrData[i].length; ++j) {
                     let data = this.prefabPawnArrData[i][j];
                     let pawn = this.createPawn();
@@ -80,6 +87,8 @@ export default class MapController extends cc.Component {
                     pawn.setPosition(data.x, data.y);
                     pawn.getComponent(Pawn).init(data.type, data.x, data.y);
                 }
+                this.spwanLock = true;
+                this.schedule(() => { this.spwanLock = false; }, this.spawnCD);
                 break;
             }
         }

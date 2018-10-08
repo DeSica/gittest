@@ -546,7 +546,7 @@
     "moveSpeed": {
       "__type__": "cc.Vec2",
       "x": 0,
-      "y": -20
+      "y": -10
     },
     "spriteArr": [
       {
@@ -560,6 +560,7 @@
       }
     ],
     "pawnPoolInitNum": 10,
+    "spawnCD": 1,
     "_id": "dcGnhbaC5IJZTqofmu3ElW"
   },
   {

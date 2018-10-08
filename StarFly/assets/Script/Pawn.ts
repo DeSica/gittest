@@ -39,14 +39,20 @@ export default class Pawn extends cc.Component {
         this.sprite = this.getComponent(cc.Sprite);
         this.sprite.spriteFrame = MapController.instance.spriteArr[type];
         this.type = type;
-        this.moveAction = this.node.runAction(
-            cc.sequence(
-                cc.moveTo(
-                    Math.abs((this.moveY - y) / this.moveSpeed), new cc.Vec2(x, this.moveY)
-                ),
-                cc.callFunc(this.moveEndCall, this)
-            )
-        );
+        switch(type) {
+            case PawnType.PawnType_Block:
+            case PawnType.PawnType_Die:
+            case PawnType.PawnType_Score:
+            this.moveAction = this.node.runAction(
+                cc.sequence(
+                    cc.moveTo(
+                        Math.abs((this.moveY - y) / this.moveSpeed), new cc.Vec2(x, this.moveY)
+                    ),
+                    cc.callFunc(this.moveEndCall, this)
+                )
+            );
+            break;
+        }
     }
 
     onCollisionEnter(other: cc.Collider, self: cc.Collider) {
