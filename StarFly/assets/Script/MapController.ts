@@ -31,7 +31,7 @@ export default class MapController extends cc.Component {
     @property(cc.Integer)
     pawnPoolInitNum = 10;
     @property(cc.Integer)
-    spawnCD = 1;
+    spawnCD = 2;
 
     spwanLock = false;
     rateArr = [0.01, 0.02, 0.03];
@@ -76,7 +76,7 @@ export default class MapController extends cc.Component {
         if(this.spwanLock) {
             return;
         }
-        let randomNum = Math.random() * 5;
+        let randomNum = Math.random() * 2;
         for(let i = 0; i < this.rateArr.length; ++i) {
             if(this.rateArr[i] > randomNum) {
                 for(let j = 0; j < this.prefabPawnArrData[i].length; ++j) {
@@ -88,7 +88,7 @@ export default class MapController extends cc.Component {
                     pawn.getComponent(Pawn).init(data.type, data.x, data.y);
                 }
                 this.spwanLock = true;
-                this.schedule(() => { this.spwanLock = false; }, this.spawnCD);
+                this.scheduleOnce(() => { this.spwanLock = false; }, this.spawnCD);
                 break;
             }
         }
