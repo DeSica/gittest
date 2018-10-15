@@ -54,6 +54,7 @@ public class GameManager : MonoBehaviour {
 	public void RestartLevel() 
 	{
 		ShowLevel(m_CurLevelName);
+		GameUIController.m_Instance.ReStart();
 	}
 	public void PauseGame()
 	{
