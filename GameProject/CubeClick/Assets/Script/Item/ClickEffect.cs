@@ -9,7 +9,6 @@ public class ClickEffect : MonoBehaviour {
     public float m_EndEffectTime = 1;
 
     CircleCollider2D m_Collider;
-    float m_InitialRadius;
     Tweener m_EffectTweener;
 	// Use this for initialization
 	void Start () {
@@ -18,12 +17,12 @@ public class ClickEffect : MonoBehaviour {
         m_EffectTweener.onComplete = () =>
         {
             m_EffectTweener.Restart();
-            m_EffectTweener.WaitForStart();
+            m_EffectTweener.Pause();
             PoolManager.instance.PutClickObj(gameObject);
         };
-        m_EffectTweener.WaitForStart();
+        //m_EffectTweener.Pause();
     }
-	public void PlayEffect()
+	public void PlayEffect() 
     {
         m_EffectTweener.Play();
     }

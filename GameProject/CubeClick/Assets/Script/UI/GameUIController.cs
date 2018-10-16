@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 public class GameUIController : MonoBehaviour {
 
+	public Button m_SetButton;
 	public int m_TouchLimit = 20;
 	public Text m_TimeText;
 	public Text m_TouchCountText;
@@ -12,7 +13,11 @@ public class GameUIController : MonoBehaviour {
 	private int m_CurTouchCount = 0;
 	// Use this for initialization
 	void Start () {
-		
+		m_SetButton.onClick.AddListener(() => {
+			PlayerController.m_Instance.SetClickLock(true);
+			GameManager.Instance.PauseGame();
+			GameManager.Instance.ShowPanel(PanelType.SetPanel);
+		});
 	}
 	private void OnEnable() {
 		ReStart();
@@ -26,6 +31,7 @@ public class GameUIController : MonoBehaviour {
 		m_CurTouchCount = 0;
 		m_TimeText.text = m_LevelPassTime.ToString();
 		m_TouchCountText.text = (m_TouchLimit - m_CurTouchCount).ToString();
+		CancelInvoke("UpdateTime");
 		InvokeRepeating("UpdateTime", 1, 1);
 	}
 	private void UpdateTime()
@@ -33,16 +39,10 @@ public class GameUIController : MonoBehaviour {
 		++m_LevelPassTime;
 		m_TimeText.text = m_LevelPassTime.ToString();
 	}
-	public void AddTouchCount(int _AddNum)
+	public int GetCurLevelStar()
 	{
-		m_CurTouchCount += _AddNum;
-		if(m_TouchLimit < m_CurTouchCount)
-		{
-			m_CurTouchCount = m_TouchLimit;
-			ReStart();
-			GameManager.Instance.RestartLevel();
-		}
-		m_TouchCountText.text = (m_TouchLimit - m_CurTouchCount).ToString();
+		int star = 3 - m_LevelPassTime / 30;
+		return star > 0 ? star : 0;
 	}
 	// Update is called once per frame
 	public static GameUIController m_Instance;

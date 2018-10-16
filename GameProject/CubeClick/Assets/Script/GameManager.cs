@@ -4,43 +4,44 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour {
 
-	public GameObject[] m_LevelPrefabArr;
+	public List<GameObject> m_LevelPrefabArr;
 	public GameObject m_WorldRoot;
 	public GameObject m_UIRoot;
 
 	private string m_CurLevelName;
 	private GameObject m_CurLevelObj;
+	private int m_CurLevelIndex;
 	void Start () {
 		HideLevel();
-		ShowPanel("MenuPanel");
+		ShowPanel(PanelType.MenuPanel);
 	}
-	public void ShowPanel(string _PanelName) 
+	public void ShowPanel(PanelType _Panel) 
 	{
-		Transform _PanelTr = m_UIRoot.transform.Find(_PanelName);
+		Transform _PanelTr = m_UIRoot.transform.Find(_Panel.ToString());
 		if(_PanelTr) 
 		{
 			_PanelTr.gameObject.SetActive(true);
 		}
 	}
-	public void HidePanel(string _PanelName) 
+	public void HidePanel(PanelType _Panel) 
 	{
-		Transform _PanelTr = m_UIRoot.transform.Find(_PanelName);
+		Transform _PanelTr = m_UIRoot.transform.Find(_Panel.ToString());
 		if(_PanelTr) 
 		{
 			_PanelTr.gameObject.SetActive(false);
 		}
 	}
-	public void ShowLevel(string _LevelName) 
+	public void ShowLevel(int _LevelIndex) 
 	{
 		m_WorldRoot.SetActive(true);
 		Destroy(m_CurLevelObj);
-		foreach(GameObject prefab in m_LevelPrefabArr)
+		for(int i = 0; i <　m_LevelPrefabArr.Count; ++i)
 		{
-			if(prefab.name == _LevelName) 
+			if(i == _LevelIndex) 
 			{
-				GameObject obj = Instantiate(prefab);
-				m_CurLevelName = _LevelName;
+				GameObject obj = Instantiate(m_LevelPrefabArr[i]);
 				m_CurLevelObj = obj;
+				m_CurLevelIndex = _LevelIndex;
 				obj.SetActive(true);
 				obj.transform.parent = m_WorldRoot.transform;
 			}
@@ -53,8 +54,21 @@ public class GameManager : MonoBehaviour {
 
 	public void RestartLevel() 
 	{
-		ShowLevel(m_CurLevelName);
+		ShowLevel(m_CurLevelIndex);
 		GameUIController.m_Instance.ReStart();
+	}
+	public void NextLevel()
+	{
+		if(m_CurLevelIndex >= m_LevelPrefabArr.Count - 1)
+		{
+			HideLevel();
+			HidePanel(PanelType.GamePanel);
+			ShowPanel(PanelType.LevelPanel);
+		} else 
+		{
+			ShowLevel(++m_CurLevelIndex);
+			GameUIController.m_Instance.ReStart();
+		}
 	}
 	public void PauseGame()
 	{
