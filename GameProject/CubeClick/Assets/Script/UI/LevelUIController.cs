@@ -5,17 +5,26 @@ using UnityEngine.UI;
 
 public class LevelUIController : MonoBehaviour {
 
-	public Button[] m_LevelBtnArr;
+	public GameObject m_LevelPrefab;
+
+	List<Button> m_LevelBtnArr;
 	// Use this for initialization
 	void Start () {
-		for(int i = 0; i < m_LevelBtnArr.Length; ++i)
+		int LevelNum = GameManager.Instance.m_LevelPrefabArr.Count;
+		for(int i = 0; i < LevelNum; ++i)
 		{
+			GameObject obj = Instantiate(m_LevelPrefab);
+			obj.transform.parent = transform;
+			Text txt = obj.transform.GetChild(0).GetComponent<Text>();
+			txt.text = "level" + (i + 1);
+			Button btn = obj.GetComponent<Button>();
 			int _LevelIndex = i;
-			m_LevelBtnArr[i].onClick.AddListener(() => {
+			btn.onClick.AddListener(() => {
 				GameManager.Instance.ShowLevel(_LevelIndex);
 				GameManager.Instance.HidePanel(PanelType.LevelPanel);
 				GameManager.Instance.ShowPanel(PanelType.GamePanel);
 			});
+			m_LevelBtnArr.Add(btn);
 		}
 	}
 	
