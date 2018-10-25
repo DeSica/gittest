@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
 
-    public float m_UpPower = 10; 
+    public float m_UpPower = 1000; 
     private bool m_ClickLock = false;
     // Use this for initialization
     void Start()

@@ -5,9 +5,9 @@ using DG.Tweening;
 
 public class ClickEffect : MonoBehaviour {
 
-    public float m_EndRadius = 1;
+    public float m_EndRadius = 100;
     public float m_EndEffectTime = 1;
-
+    public float m_EffectPower = 2000;
     CircleCollider2D m_Collider;
     Tweener m_EffectTweener;
 	// Use this for initialization
@@ -21,6 +21,14 @@ public class ClickEffect : MonoBehaviour {
             PoolManager.instance.PutClickObj(gameObject);
         };
         //m_EffectTweener.Pause();
+    }
+    private void OnTriggerEnter2D(Collider2D other) {
+        if(other.gameObject.tag == "PlayerCube")
+        {
+            Rigidbody2D rigid = other.gameObject.GetComponent<Rigidbody2D>();
+            Vector2 a1 = (other.gameObject.transform.position - transform.position).normalized;
+            rigid.AddForce(a1 * m_EffectPower);
+        }
     }
 	public void PlayEffect() 
     {

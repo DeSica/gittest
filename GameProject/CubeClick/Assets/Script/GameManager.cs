@@ -7,15 +7,15 @@ public class GameManager : MonoBehaviour {
 	public List<GameObject> m_LevelPrefabArr;
 	public GameObject m_WorldRoot;
 	public GameObject m_UIRoot;
+	[HideInInspector]
+	public Rect m_ScreenWorldRect;
 
 	private string m_CurLevelName;
 	private GameObject m_CurLevelObj;
 	private int m_CurLevelIndex;
 
 	private Vector3 m_ScreenSize;
-	private Rect m_ScreenWorldRect;
 	void Start () {
-		CulScreenSize();
 		HideLevel();
 		ShowPanel(PanelType.MenuPanel);
 	}
@@ -96,6 +96,7 @@ public class GameManager : MonoBehaviour {
 	}
 	public static GameManager Instance = null;
 	private void Awake() {
+		CulScreenSize();
 		Instance = this;
 	}
 }
