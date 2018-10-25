@@ -10,11 +10,12 @@ public class LevelUIController : MonoBehaviour {
 	List<Button> m_LevelBtnArr;
 	// Use this for initialization
 	void Start () {
+		m_LevelBtnArr = new List<Button>();
 		int LevelNum = GameManager.Instance.m_LevelPrefabArr.Count;
 		for(int i = 0; i < LevelNum; ++i)
 		{
 			GameObject obj = Instantiate(m_LevelPrefab);
-			obj.transform.parent = transform;
+			obj.transform.SetParent(transform);
 			Text txt = obj.transform.GetChild(0).GetComponent<Text>();
 			txt.text = "level" + (i + 1);
 			Button btn = obj.GetComponent<Button>();

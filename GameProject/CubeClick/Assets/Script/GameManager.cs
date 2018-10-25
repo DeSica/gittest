@@ -11,7 +11,11 @@ public class GameManager : MonoBehaviour {
 	private string m_CurLevelName;
 	private GameObject m_CurLevelObj;
 	private int m_CurLevelIndex;
+
+	private Vector3 m_ScreenSize;
+	private Rect m_ScreenWorldRect;
 	void Start () {
+		CulScreenSize();
 		HideLevel();
 		ShowPanel(PanelType.MenuPanel);
 	}
@@ -77,6 +81,14 @@ public class GameManager : MonoBehaviour {
 	public void ContinueGame()
 	{
 		Time.timeScale = 1;
+	}
+
+	public void CulScreenSize()
+	{
+		m_ScreenSize = new Vector3(Screen.width, Screen.height, 0);
+		Vector3 ScreenP1 = Camera.main.ScreenToWorldPoint(Vector3.zero);
+		Vector3 ScreenP2 = Camera.main.ScreenToWorldPoint(m_ScreenSize);
+		m_ScreenWorldRect = new Rect(ScreenP1.x, ScreenP1.y, ScreenP2.x - ScreenP1.x, ScreenP2.y - ScreenP1.y);
 	}
 	// Update is called once per frame
 	void Update () {

@@ -28,7 +28,6 @@ public class PlayerController : MonoBehaviour
                     GameObject obj = PoolManager.instance.GetClickObj();
                     obj.transform.position = new Vector3(worldPos.x, worldPos.y, 0);
                     obj.GetComponent<ClickEffect>().PlayEffect();
-                    //GameUIController.m_Instance.AddTouchCount(1);
                     break;
                     case "PlayerCube":
                     Rigidbody2D body = hitObj.GetComponent<Rigidbody2D>();
