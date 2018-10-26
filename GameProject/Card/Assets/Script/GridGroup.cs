@@ -27,7 +27,7 @@ public class GridGroup : MonoBehaviour {
 	}
 	void InitGridGroup()
 	{
-		Global.RemoveChildrenByType(transform, typeof(Grid));
+		Global.RemoveChildrenByComponentType(transform, typeof(Grid));
 		for(int i = 0; i < GridGroupSize.x; ++i)
 		{
 			for(int j = 0; j < GridGroupSize.y; ++j)
@@ -42,6 +42,5 @@ public class GridGroup : MonoBehaviour {
 	}
 	// Update is called once per frame
 	void Update () {
-		
 	}
 }
