@@ -21,8 +21,8 @@ namespace UnityEngine
 		public static Vector2 GetSpriteObjWorldSize(GameObject spriteObj)
 		{
 			Sprite sp = spriteObj.GetComponent<SpriteRenderer>().sprite;
-			Vector3 scale = spriteObj.transform.lossyScale;
-			return new Vector2(sp.rect.width / sp.pixelsPerUnit / scale.x, sp.rect.height / sp.pixelsPerUnit / scale.y);
+			Vector3 scale = spriteObj.transform.localScale;
+			return new Vector2(sp.rect.width / sp.pixelsPerUnit * scale.x, sp.rect.height / sp.pixelsPerUnit * scale.y);
 		}
 	}
 }

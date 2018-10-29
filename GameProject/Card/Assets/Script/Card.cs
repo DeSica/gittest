@@ -13,4 +13,5 @@ public class Card : MonoBehaviour {
 	void Update () {
 		
 	}
+	
 }

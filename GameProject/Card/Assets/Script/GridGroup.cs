@@ -9,16 +9,10 @@ public class GridGroup : MonoBehaviour {
 	public Vector2 GridInterval;
 
 	private Vector2 GridSize;
-	private int GridNum;
 	private Vector2 GridOffset;
 	// Use this for initialization
 	void Start () {
-		SpriteRenderer sr = GridPrefab.GetComponent<SpriteRenderer>();
-		GridSize = new Vector2(
-			sr.size.x * GridPrefab.transform.localScale.x, 
-			sr.size.y * GridPrefab.transform.localScale.y
-			);
-		GridNum = GridGroupSize.x * GridGroupSize.y;
+		GridSize = Global.GetSpriteObjWorldSize(GridPrefab);
 		GridOffset = new Vector2(
 			-((GridGroupSize.x - 1) * GridSize.x + (GridGroupSize.x - 1) * GridInterval.x) / 2,
 			-((GridGroupSize.y - 1) * GridSize.y + (GridGroupSize.y - 1) * GridInterval.y) / 2
