@@ -6,9 +6,9 @@ namespace UnityEngine
 {
 
 	public class Global : MonoBehaviour {
-		public static void RemoveChildrenByComponentType(Transform parent, Type ComponentType)
+		public static void RemoveChildrenByComponentType(Transform parent, Type componentType)
 		{
-			Component[] cptArr = parent.GetComponentsInChildren(ComponentType, true);
+			Component[] cptArr = parent.GetComponentsInChildren(componentType, true);
 			parent.DetachChildren();
 			foreach(Component cpt in cptArr)
 			{
@@ -17,6 +17,12 @@ namespace UnityEngine
 					Destroy(cpt.gameObject);
 				}
 			}
+		}
+		public static Vector2 GetSpriteObjWorldSize(GameObject spriteObj)
+		{
+			Sprite sp = spriteObj.GetComponent<SpriteRenderer>().sprite;
+			Vector3 scale = spriteObj.transform.lossyScale;
+			return new Vector2(sp.rect.width / sp.pixelsPerUnit / scale.x, sp.rect.height / sp.pixelsPerUnit / scale.y);
 		}
 	}
 }
