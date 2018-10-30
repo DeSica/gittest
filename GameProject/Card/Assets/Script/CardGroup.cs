@@ -46,11 +46,7 @@ public class CardGroup : MonoBehaviour {
 	{
 		if(selectCard != SelectCardObj)
 		{
-			if(SelectCardObj)
-			{
-				CardList.Insert(SelectCardIndex, SelectCardObj);
-				SelectCardObj.transform.DOScale(CardNormalScale, 0.5f);
-			}
+			CancelSelect();
 			int index = CardList.IndexOf(selectCard);
 			SelectCardIndex = index;
 			SelectCardObj = CardList[index];
@@ -60,7 +56,14 @@ public class CardGroup : MonoBehaviour {
 			ArrangeCard();
 		}
 	}
-	
+	void CancelSelect()
+	{
+		if(SelectCardObj)
+		{
+			CardList.Insert(SelectCardIndex, SelectCardObj);
+			SelectCardObj.transform.DOScale(CardNormalScale, 0.5f);
+		}
+	}
 	public void PlayCard()
 	{
 
