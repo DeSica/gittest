@@ -10,22 +10,30 @@ public class CardData
 	public int id; 
 	public string name;
 }
+
 [System.Serializable]
-public class CardDataArr
+public class BossData
 {
-	public List<CardData> data;
+	public int id; 
+	public string name;
+}
+[System.Serializable]
+public class TableData
+{
+	public List<BossData> BossData;
+	public List<CardData> CardData;
 }
 public class DataManager : MonoBehaviour {
 
 	public static DataManager Instance = null;
-	private CardDataArr CardData;
+	private TableData TableData;
 	private void Awake() {
 		Instance = this;
 	}
 	// Use this for initialization
 	void Start () {
 		string path = Application.dataPath + "/Resources/JSON/test.json";
-		CardData = LoadFromFile<CardDataArr>(path);
+		TableData = LoadFromFile<TableData>(path);
 	}
 	
 	T LoadFromFile<T> (string path)

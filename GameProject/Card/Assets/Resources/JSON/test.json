@@ -1,6 +1,10 @@
 {
-    "data" : [
-        { "id" : "1", "name" : "a" },
-        { "id" : "2", "name" : "b" }
+    "CardData" : [
+        { "id" : "11", "name" : "a" },
+        { "id" : "12", "name" : "b" }
+    ],
+    "BossData" : [
+        { "id" : "21", "name" : "a" },
+        { "id" : "22", "name" : "b" }
     ]
 }
